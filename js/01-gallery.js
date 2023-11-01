@@ -40,16 +40,17 @@ function handleGalleryClick (event) {
         src=${urlBigImage}
         />
     </div>`
-    )
+    );
 
-    instance.show()
+    instance.show();
+
+    document.addEventListener("keydown", handleKeyDown);
 }
 
 // Big image Esc
-document.addEventListener("keydown", handleKeyDown);
-
 function handleKeyDown (event) {
-    if (!instance.visible()) return;
-    if (event.code !== "Escape") return;
+    if ((!instance.visible()) || (event.code !== "Escape")) return;
     instance.close();
+    document.removeEventListener("keydown", handleKeyDown);
 }
+
